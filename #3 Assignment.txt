@@ -1,0 +1,110 @@
+[TestClass]
+    public class SimpleCalcTests
+    {
+        public SimpleCalc Calc { get; }
+
+        public SimpleCalcTests()
+        {
+            Calc = new SimpleCalc();
+        }
+
+        #region Sum
+        [TestMethod("SumWithFixValue")]
+        public decimal SumWithFixValue()
+        {
+            return Calc.OperatorSwitch("+", 20, 20);
+        }
+
+        [TestMethod("Sum")]
+        public decimal Sum(decimal leftNumber, decimal rightNumber)
+        {
+            return Calc.OperatorSwitch("+", leftNumber, rightNumber);
+        }
+        #endregion
+
+        #region Subtraction
+        [TestMethod("SubtractionWithFixValue")]
+        public decimal SubtractionWithFixValue()
+        {
+            return Calc.OperatorSwitch("-", 20, 20);
+        }
+
+        [TestMethod("Subtraction")]
+        public decimal Subtraction(decimal leftNumber, decimal rightNumber)
+        {
+            return Calc.OperatorSwitch("-", leftNumber, rightNumber);
+        }
+        #endregion
+
+        #region Multiplication
+        [TestMethod("MultiplicationWithFixValue")]
+        public decimal MultiplicationWithFixValue()
+        {
+            return Calc.OperatorSwitch("*", 20, 20);
+        }
+
+        [TestMethod("MultiplicationWithZero")]
+        public decimal MultiplicationWithZero(decimal leftNumber)
+        {
+            return Calc.OperatorSwitch("*", leftNumber, 0);
+        }
+
+        [TestMethod("Multiplication")]
+        public decimal Multiplication(decimal leftNumber, decimal rightNumber)
+        {
+            return Calc.OperatorSwitch("*", leftNumber, rightNumber);
+        }
+        #endregion
+
+        #region Division
+        [TestMethod("DivisionWithFixValue")]
+        public decimal DivisionWithFixValue()
+        {
+            return Calc.OperatorSwitch("/", 20, 20);
+        }
+
+        [TestMethod("Division")]
+        public decimal Division(decimal leftNumber, decimal rightNumber)
+        {
+            return Calc.OperatorSwitch("/", leftNumber, rightNumber);
+        }
+
+        [TestMethod("DivisionByZero")]
+        public decimal Division(decimal rightNumber)
+        {
+            return Calc.OperatorSwitch("/", 0, rightNumber);
+        }
+        #endregion
+
+        #region Selection Method
+        [TestMethod("Without Select Mathematical Operation With Value")]
+        public decimal WithoutSelectOperationWithValue(decimal leftNumber, decimal rightNumber)
+        {
+            return Calc.OperatorSwitch("", leftNumber, rightNumber);
+        }
+
+        [TestMethod("Select Mathematical Operation Without Value")]
+        public decimal SelectOperation(string operation)
+        {
+            return Calc.OperatorSwitch(operation);
+        }
+
+        [TestMethod("Select Mathematical Operation With Single Value")]
+        public decimal SelectOperationWithSingleValue(string operation, decimal leftNumber)
+        {
+            return Calc.OperatorSwitch(operation, leftNumber);
+        }
+
+        [TestMethod("Select Mathematical Operation With Value")]
+        public decimal SelectOperationWithValue(string operation, decimal leftNumber, decimal rightNumber)
+        {
+            return Calc.OperatorSwitch(operation, leftNumber, rightNumber);
+        }
+
+        [TestMethod("Without Select Mathematical Operation Without Value")]
+        public decimal WithoutSelectOperationWithOutValue()
+        {
+            return Calc.OperatorSwitch();
+        }
+        #endregion
+    }
